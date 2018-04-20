@@ -1,7 +1,7 @@
 import pytest
-from bot import slackConnect, slackRtmRead, parseInputMessage
+from bot import slackConnect, slackRtmRead, parseInputMessage, sendMessageToSlack
 
-input = {'type': 'message', 'channel': 'DABDFD8GP', 'user': 'UA9LVEY64', 'text': 'ananasdads', 'ts': '1524232547.000489', 'source_team': 'TAABY7WCS', 'team': 'TAABY7WCS'}
+input = {'type': 'message', 'channel': 'CHANNEL', 'user': 'USER', 'text': 'ananasdads', 'ts': '||||', 'source_team': '|||', 'team': '|||'}
 
 def test_slackConnection():
     assert slackConnect() == True
@@ -13,3 +13,7 @@ def test_slackRtmRead():
 
 def test_parsetInputMessage():
     assert parseInputMessage(input) == ['UA9LVEY64','ananasdads']
+
+
+def test_sendMessageToSlack():
+    assert sendMessageToSlack('CHAT_ID','testing message') == True
