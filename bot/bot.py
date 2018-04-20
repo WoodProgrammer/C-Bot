@@ -17,3 +17,10 @@ def slackRtmRead():
 
 def parseInputMessage(input):
     return [input['user'],input['text']]
+
+def sendMessageToSlack(channel_name,input):
+    try:
+        slack_client.api_call('chat.postMessage',channel=channel_name, text=input, as_user=True)
+        return True
+    except:
+        return False
