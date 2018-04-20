@@ -1,5 +1,7 @@
 from slackclient import SlackClient
 from config import API_KEY
+import time
+
 slack_client = SlackClient(API_KEY)
 
 
@@ -8,4 +10,6 @@ def slackConnect():
     return slack_client.rtm_connect()
 
 def slackRtmRead():
-    return slack_client.rtm_read()
+    while True:
+        print(slack_client.rtm_read())
+        time.sleep(1)
