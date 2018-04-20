@@ -13,3 +13,7 @@ def slackRtmRead():
     while True:
         print(slack_client.rtm_read())
         time.sleep(1)
+
+
+def parseInputMessage(input):
+    return [input['user'],input['text']]
