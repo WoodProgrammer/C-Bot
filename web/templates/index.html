@@ -1,0 +1,96 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script language="JavaScript" type="text/javascript" script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+
+
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <form class="form-horizontal" role="form" id="form">
+        <fieldset>
+
+          <!-- Form Name -->
+          <legend>PayLoad Details</legend>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Payload Name</label>
+            <div class="col-sm-10">
+              <input name="payload_name" id="payload" type="text" placeholder="registry_payload_name" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Payload Main</label>
+            <div class="col-sm-10">
+              <textarea name="payload_function" class="form-control" placeholder="def func(VAR1, VAR2, VAR3): " rows="5" id="comment"></textarea>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Payload Variables</label>
+            <div class="col-sm-10">
+              <input name="payload_variables" type="text" placeholder="VAR1,VAR2,VAR3" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sel1">Service Name</label>
+            <select name="service_selection" class="form-control" id="sel1">
+              <option >docker</option>
+            </select>
+            <br>
+
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="pull-right">
+                <button id="form-button" type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+
+
+
+    <script type="text/javascript">
+        modules = ["docker","git","ansible"]
+        module_id = 1
+        $('select').change(function(){
+          module_id = $(this).children('option:selected').data('id');
+          console.log(modules[module_id-1]);
+        });
+
+        $('#form').submit(function(){
+          data_array = $("#form").serialize();
+          alert(data_array);
+
+          $.ajax({
+              type: 'GET',
+              url: 'http://localhost:5000/set_payload',
+              data: { data_array },
+              dataType: 'json'
+
+          });
+    });
+
+    </script>
+
+
+</body>
+</html>
