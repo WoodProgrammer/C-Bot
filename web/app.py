@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route("/index")
@@ -7,14 +7,14 @@ def index():
 
 @app.route("/set_payload")
 def set_payload():
+    print(request)
+
     ##setting_payload
     return render_template("payloads.html")
 
 
 @app.route("/payload/<id>")
 def payload_detail(id):
-
-    ##detail_of_payload
     return render_template("payloads.html")
 
 
