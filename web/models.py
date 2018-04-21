@@ -6,8 +6,6 @@ class Model:
         self._cli = MongoClient()
         self._db = self._cli['chat_bot']
 
-
-
     def _set_payload(self,payload):
         try:
             self._db['payloads'].insert_one(payload)
@@ -15,3 +13,6 @@ class Model:
         except Exception as exp:
             #logging exp
             return exp
+
+    def _get_detail(self,id):
+        return self._db['payloads'].find_one({'id':id})
