@@ -7,16 +7,14 @@ obj = Model()
 def index():
     return render_template("index.html")
 
-@app.route("/set_payload")
+@app.route("/set_payload",methods=["GET","POST"])
 def set_payload():
+    if request.method == "POST":
 
-    payload_name = request.args['payload_name']
-    payload_function = request.args['payload_function']
-    payload_variables = request.args['payload_variables']
-    service_selection = request.args['service_selection']
-    
-
-    return render_template("payloads.html")
+        file_name = str(request.files['file_of_code'])
+        print(file_name)
+        
+        return render_template("payloads.html")
 
 
 @app.route("/payload/<id>")
