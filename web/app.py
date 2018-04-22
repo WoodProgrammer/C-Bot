@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request
 from models import Model
+from helper import hash_file_name
+import os
+
 app = Flask(__name__)
 obj = Model()
+app.config['UPLOAD_FOLDER'] = "scripts"
 
 @app.route("/index")
 def index():
@@ -10,10 +14,10 @@ def index():
 @app.route("/set_payload",methods=["GET","POST"])
 def set_payload():
     if request.method == "POST":
+        file_name = request.form['payload_name']
+        file = request.files['file_of_code']
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
 
-        file_name = str(request.files['file_of_code'])
-        print(file_name)
-        
         return render_template("payloads.html")
 
 

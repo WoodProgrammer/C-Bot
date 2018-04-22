@@ -1,5 +1,4 @@
-def parse_function(input):
-    return input
+import hashlib
 
 def hash_file_name(file_name):
     return hash(file_name)
