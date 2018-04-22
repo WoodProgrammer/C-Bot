@@ -22,13 +22,12 @@ def set_payload():
 
         payload_dict['payload_name'] = file_name
 
-        file_name = hash_file_name(file_name)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+        file_name = hash_file_name(file_name) #hashing file_name
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name)) #file is saving in here
+        payload_dict['vars'] = vars #vars fetched
+        payload_dict['file'] = 'scripts/{}'.format(file_name)#file path
 
-
-        payload_dict['vars'] = vars
-        payload_dict['file'] = 'scripts/{}'.format(file_name)
-
+        obj._set_payload(payload_dict) ## saving to the db
 
         return render_template("payloads.html",data="Payload {} Kayıt edildi".format(file_name))
 
