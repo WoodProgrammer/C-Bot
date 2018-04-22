@@ -16,7 +16,7 @@ def set_payload():
     if request.method == "POST":
         file_name = request.form['payload_name']
         file = request.files['file_of_code']
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], hash_file_name(file_name)))
 
         return render_template("payloads.html")
 
