@@ -13,12 +13,24 @@ def index():
 
 @app.route("/set_payload",methods=["GET","POST"])
 def set_payload():
+    payload_dict = {}
+
     if request.method == "POST":
         file_name = request.form['payload_name']
         file = request.files['file_of_code']
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], hash_file_name(file_name)))
+        vars = [var for var in request.form['payload_variables'].split(',')]
 
-        return render_template("payloads.html")
+        payload_dict['payload_name'] = file_name
+
+        file_name = hash_file_name(file_name)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+
+
+        payload_dict['vars'] = vars
+        payload_dict['file'] = 'scripts/{}'.format(file_name)
+
+
+        return render_template("payloads.html",data="Payload {} Kayıt edildi".format(file_name))
 
 
 @app.route("/payload/<id>")
