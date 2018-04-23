@@ -10,10 +10,14 @@ def test_slackConnection():
 def test_slackRtmRead():
     print(slackRtmRead())
 
-
+@pytest.mark.skip(reason="PASSED")
 def test_parsetInputMessage():
     assert parseInputMessage(input) == ['UA9LVEY64','ananasdads']
 
-
+@pytest.mark.skip(reason="PASSED")
 def test_sendMessageToSlack():
     assert sendMessageToSlack('CHAT_ID','testing message') == True
+
+
+def test_slackRtmRead():
+    slackRtmRead()

@@ -1,6 +1,6 @@
 from slackclient import SlackClient
 from config import API_KEY
-import time
+import time, json
 
 slack_client = SlackClient(API_KEY)
 
@@ -11,7 +11,12 @@ def slackConnect():
 
 def slackRtmRead():
     while True:
-        print(slack_client.rtm_read())
+        data = slack_client.rtm_read()
+        try:
+            if data[0]['type'] == 'message':
+                print(data[0]['text'])##call function
+        except:
+            print(data)
         time.sleep(1)
 
 
