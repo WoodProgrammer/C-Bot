@@ -1,15 +1,18 @@
 from bot_model import BotModel
-
+import os
 b_obj = BotModel()
 
-def run_payload(path,payload_name,vars):
-    data = get_vars(payload_name=payload_name)
-    if len(vars) != data['vars']:
-        return "Err"
-    else:
-        os.system("python3"+payload_name+".py"+vars)
+def run_payload(message):
 
+    msg = message.split(',')
+    file = msg[0]
+    msg.remove(msg[0])
 
+    vars = ''.join(msg)
 
-def get_vars(payload_name):
-    return b_obj._get_detail(payload_name=payload_name)
+    #vars = b_obj._get_detail(payload_name=msg[0]) for validation
+
+    try:
+        return os.system("python3"+" "+file+".py {}".format(vars))
+    except Exception as exp:
+        print(exp)

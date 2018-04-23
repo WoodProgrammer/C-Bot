@@ -1,10 +1,7 @@
-from bot_helper import run_payload, get_vars
+from bot_helper import run_payload
 import pytest
 
-payload_name = "docker_registry"
+payload_name = "docker_registry,asd,asd,asd"
 
 def test_run_payload():
     run_payload(payload_name)
-
-def test_get_vars():
-    get_vars(payload_name='docker_registry')

@@ -15,6 +15,7 @@ def slackRtmRead():
         try:
             if data[0]['type'] == 'message':
                 print(data[0]['text'])##call function
+                
         except:
             print(data)
         time.sleep(1)
