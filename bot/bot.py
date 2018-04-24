@@ -1,5 +1,6 @@
 from slackclient import SlackClient
 from config import API_KEY
+from bot_helper import run_payload
 import time, json
 
 slack_client = SlackClient(API_KEY)
@@ -14,10 +15,9 @@ def slackRtmRead():
         data = slack_client.rtm_read()
         try:
             if data[0]['type'] == 'message':
-                print(data[0]['text'])##call function
-                
-        except:
-            print(data)
+                print(run_payload(data[0]['text']))
+        except Exception as exp:
+            print(exp)
         time.sleep(1)
 
 

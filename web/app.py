@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from models import Model
-from helper import hash_file_name
 import os
 
 app = Flask(__name__)
@@ -22,9 +21,8 @@ def set_payload():
 
         payload_dict['payload_name'] = file_name
 
-        file_name = hash_file_name(file_name) #hashing file_name
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name)) #file is saving in here
-        payload_dict['vars'] = vars #vars fetched
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name+".py")) #file is saving in here
+        payload_dict['vars'] = vars
         payload_dict['file'] = 'scripts/{}'.format(file_name)#file path
 
         obj._set_payload(payload_dict) ## saving to the db
