@@ -1,8 +1,8 @@
 from bot_model import BotModel
 import os
 b_obj = BotModel()
-os.environ['BOT_SCRIPT_PATH'] = "~/scripts"
 
+script_path = os.environ['BOT_SCRIPT_PATH']
 def run_payload(message):
 
     msg = message.split(',')
@@ -15,7 +15,7 @@ def run_payload(message):
 
     try:
         print("python3"+" "+file+".py {}".format(vars))
-        return os.system("python3"+" "+file+".py {}".format(vars))
+        return os.system("python3"+" "+script_path+"/"+file+".py {}".format(vars))
     except Exception as exp:
         print(exp)
 

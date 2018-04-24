@@ -2,10 +2,10 @@ from flask import Flask, render_template, request
 from models import Model
 import os
 
-
 app = Flask(__name__)
 obj = Model()
-app.config['UPLOAD_FOLDER'] = "scripts"
+
+app.config['UPLOAD_FOLDER'] = os.environ['BOT_SCRIPT_PATH']
 
 @app.route("/index")
 def index():
