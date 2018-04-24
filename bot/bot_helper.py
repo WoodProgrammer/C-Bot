@@ -1,6 +1,7 @@
 from bot_model import BotModel
 import os
 b_obj = BotModel()
+os.environ['BOT_SCRIPT_PATH'] = "~/scripts"
 
 def run_payload(message):
 
